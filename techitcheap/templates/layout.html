@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>
+        {% block title %}
+    TechItCheap New Website
+    {% endblock %}
+    </title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/main.js' %}" defer></script>
+</head>
+<body>
+    <nav>
+    <a href={% url 'homepage' %}>TechItCheap Homepage</a>
+    </nav>
+    <main>
+        {% block content %}
+
+        {% endblock %}
+    </main>
+    <footer>
+        <p><a href={% url 'homepage' %}>Home page</a></p>
+        <p><a href={%url 'privacy_policy'%}>Privacy Policy page</a></p>
+        <p><a href={%url 'terms_of_use'%}>Terms of use page</a></p>
+        <p><a href={%url 'about_us'%}>About us page</a></p>
+        <p><a href={%url 'FAQs'%}>FAQs page</a></p>
+        <p><a href={%url 'portfolio:portfolio'%}>Our Services page</a></p>
+    </footer>
+
+</body>
+</html>
