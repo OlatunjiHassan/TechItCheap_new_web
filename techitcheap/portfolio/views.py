@@ -1,17 +1,20 @@
 from django.shortcuts import render
+from portfolio.models import Project
 
 # Create your views here.
-def portfolio(request):
-    return render(request, 'portfolio.html')
+def portfolio_index(request):
+    projects = Project.objects.all()
+    context = {
+        "projects":projects
+    }
+    return render(request, 'portfolio/portfolio.html', context)
 
-# def brand_design(request):
-#     return render(request, 'brand_design.html')
+def project_details(request, pk):
+    project = Project.objects.get(pk=pk)
+    context = {
+        "project":project
+    }
+    return render(request, "portfolio/project_details.html", context)
 
-# def mobile_app(request):
-#     return render(request, 'mobile_app.html')
-
-# def website_design(request):
-#     return render(request, 'website_design.html')
-
-# def product_dev(request):
-#     return render(request, 'product_dev.html')
+def category(request, choice):
+    project = Project.objects.filter()

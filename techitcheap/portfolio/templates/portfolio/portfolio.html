@@ -1,17 +1,27 @@
-{% extends "layout.html" %}
+{% extends 'layout.html' %}
 
 {%block title%}
-Portfolio
+New Website Portfolio
 {% endblock %}
 
 {% block content %}
-<h1>This is the Portfolio Page</h1>
-This links you to various projects
-
-<p><a href={% url 'mobile_app' %}>Mobile App Design</a></p>
-<p><a href={% url 'brand_design' %}>Brand Identity Design</a></p>
-<p><a href={% url 'website_design' %}>Website Design</a></p>
-<p><a href={% url 'product_dev' %}>Product Development</a></p>
-
-{%endblock%}
-
+<h1>Projects</h1>
+<div class='row'>
+    {% for project in projects %}
+    <div class='col-md-4'>
+        <div class='card mb-2'>
+            {% if project.image %}
+            <img class='card-img-top' src="{{ project.image.url }}">
+            {% endif %}
+            <div class='card-body'>
+                <h5 class='card-title'>{{ project.title }}</h5>
+                <p class='card-text'> {{ project.description }}</p>
+                <a href="{% url 'project_details' project.pk %}" class='btn btn-primary'>
+                    Read More
+                </a>
+            </div>
+        </div>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
