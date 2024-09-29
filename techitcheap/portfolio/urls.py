@@ -6,4 +6,5 @@ app_name = "portfolio"
 urlpatterns = [
     path("", views.portfolio_index, name="portfolio_index"),
     path('<int:pk>/', views.project_details, name='project_details'),
+    path('categories/<str:option>', views.category, name='category')
 ]
