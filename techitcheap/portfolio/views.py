@@ -10,8 +10,14 @@ def portfolio_index(request):
     return render(request, 'portfolio/portfolio.html', context)
 
 def category(request, option):
-    projects = Project.objects.filter(category=option).order_by("-date")
-    return render(request, "portfolio/categories.html", {"projects":projects, "option":option})
+    options = ["Website Design", "Product Development", "Mobile app development", "mobile app and web maintanance"]
+    for opt in options:
+        if opt == option:
+            projects = Project.objects.filter(category=option).order_by("-date")
+            context = {"projects":projects, "option":option}
+            return render(request, "portfolio/categories.html", context)
+        else:
+            continue
 
 def project_details(request, pk):
     project = Project.objects.get(pk=pk)

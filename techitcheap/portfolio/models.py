@@ -4,9 +4,10 @@ from django.db import models
 class Project(models.Model):
     title = models.CharField(max_length=100)
     description = models.TextField()
-    categories = [("Website Design",'option1'),
-                  ("Product Development", 'option2'),
-                  ("Graphics Design", 'option3'),]
+    categories = [("Website Design",'Website Design'),
+                  ("Product Development", 'Product Development'),
+                  ("Mobile App Development", "Mobile App Development"),
+                  ("Mobile App and Web Maintenance", "Mobile App and Web Maintenance")]
     category = models.CharField(max_length=255, choices=categories, blank=True, null=True)
     image = models.FileField(blank=True)
     date = models.DateTimeField(auto_now_add=True)

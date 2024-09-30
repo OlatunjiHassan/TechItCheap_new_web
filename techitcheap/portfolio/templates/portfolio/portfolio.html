@@ -16,9 +16,9 @@ New Website Portfolio
             <div class='card-body'>
                 <h5 class='card-title'>{{ project.title }}</h5>
                 <p class='card-text'> {{ project.description }}</p> 
-                <p class='card-text'> {{ project.category }}</p>
+                <p class='card-text'><a href="{% url 'portfolio:category' project.category %}">{{ project.category }}</a></p>
                 {% comment %} <a href="{% url "category" project.option %}" class='btn btn-primary'> {% endcomment %}
-                {% comment %} <a href="{% url 'project_details' project.pk %}" class='btn btn-primary'> {% endcomment %}
+                <a href="{% url 'portfolio:project_details' project.pk %}" class='btn btn-primary'>
                     Read More
                 </a>
             </div>
