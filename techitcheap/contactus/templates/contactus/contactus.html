@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+{%block title%}
+New Website CONTACT US here!
+{% endblock %}
+
+{% block content %}
+<h2 class='card-title'>Contact Us Form</h2>
+{% if messages %}
+<ul class='card-text'>
+    {% for message in messages %}
+    <li>{{ message }}</li>
+    {% endfor %}
+</ul>
+{% endif %}
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class='btn btn-primary'>Send Messages</button>
+</form>
+{% endblock %}

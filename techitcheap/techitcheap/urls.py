@@ -28,6 +28,7 @@ urlpatterns = [
     path("terms_of_use/", views.terms_of_use, name="terms_of_use"),
     path("FAQs/", views.FAQs, name="FAQs"),
     path('portfolio/', include('portfolio.urls')),
+    path("contactus/", include("contactus.urls"))
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)
