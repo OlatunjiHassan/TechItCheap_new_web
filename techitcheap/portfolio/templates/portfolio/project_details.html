@@ -13,6 +13,8 @@ TechItCheap Portfolio: {{project.category}} {{ project.title }}
         {% endif %}
     </div>
     <div class='col-md-4'>
+        <p>Project Category:</p>
+        <p class='card-text'><a href="{% url 'portfolio:category' project.category %}">{{ project.category }}</a></p>
         <h5>About the project:</h5>
         <p>{{ project.description}}</p>
     </div>
