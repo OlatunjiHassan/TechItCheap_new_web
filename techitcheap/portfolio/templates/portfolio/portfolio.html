@@ -7,6 +7,8 @@ New Website Portfolio
 {% block content %}
 <h1>Projects</h1>
 <div class='row'>
+    <a href="{% url 'portfolio:search' %}" class='btn btn-primary'> Click here to Search</a> 
+
     {% for project in projects %}
     <div class='col-md-4'>
         <div class='card mb-2'>

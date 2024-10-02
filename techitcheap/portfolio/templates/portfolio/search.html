@@ -1,0 +1,22 @@
+{% extends 'layout.html' %}
+
+{% block title %}
+Search Page 
+{% endblock title %}
+
+{% block content %}
+<form method='get' action="{% url 'portfolio:search' %}">
+    {{ form.as_p }}
+<button type='submit'>Search</button>
+</form>
+
+<h2> Search Results:</h2>
+<ul>
+{% for result in results %}
+<li> {{ result.title }} {{ result.category }} </li>
+
+{% empty %}
+<li>No results found</li>
+{% endfor %}
+</ul>
+    {% endblock content %}
