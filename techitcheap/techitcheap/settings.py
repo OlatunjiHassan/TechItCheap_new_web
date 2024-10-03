@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'portfolio',
     "contactus",
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
