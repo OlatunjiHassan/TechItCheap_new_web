@@ -5,51 +5,32 @@ from rest_framework import generics, permissions
 from .serializers import ProjectSerializer
 from django.db.models import Q
 
+#This means that it is impossible to edit from client. It is only editable through django admin interface
 class ReadOnly(permissions.BasePermission):
     def has_permission(self, request, view):
         return request.method in permissions.SAFE_METHODS
-# Create your views here.
 
+#This view is the portfolio page. It returns a list of all existing in the database
 class ProjectListView(generics.ListAPIView):
     queryset = Project.objects.all().order_by("-date")
     serializer_class = ProjectSerializer
     permission_classes = [ReadOnly]
 
-# def portfolio_index(request):
-    
-#     projects = Project.objects.all().order_by("-date")
-#     context = {
-#         "projects":projects
-#     }
-#     return render(request, 'portfolio/portfolio.html', context)
-
+#This view is for each category. It returns a list of item whose category is the chosen option
 class ProjectCategoryView(generics.ListAPIView):
     serializer_class = ProjectSerializer
-
     def get_queryset(self):
         category = self.kwargs['option']
         return Project.objects.filter(category=category).order_by("-date")
-# def category(request, option):
-#     options = ["Website Design", "Product Development", "Mobile app development", "mobile app and web maintanance"]
-#     for opt in options:
-#         if opt == option:
-#             projects = Project.objects.filter(category=option).order_by("-date")
-#             context = {"projects":projects, "option":option}
-#             return render(request, "portfolio/categories.html", context)
-#         else:
-#             continue
 
+
+#This view is for each item in the database. It returns the item whose id is specified
 class ProjectDetailView(generics.RetrieveAPIView):
     queryset = Project.objects.all()
     serializer_class = ProjectSerializer
 
-# def project_details(request, pk):
-#     project = Project.objects.get(pk=pk)
-#     context = {
-#         "project":project
-#     }
-#     return render(request, "portfolio/project_details.html", context)
 
+#This view is for the search functionality. It returns a list of all items whose title, category or description is matched by the query
 class ProjectSearchView(generics.ListAPIView):
     serializer_class = ProjectSerializer
 
@@ -60,6 +41,38 @@ class ProjectSearchView(generics.ListAPIView):
             Q(category__icontains=query) |
             Q(description__icontains=query)
         ).order_by('-date')
+    
+
+
+
+
+
+
+# def portfolio_index(request):
+    
+#     projects = Project.objects.all().order_by("-date")
+#     context = {
+#         "projects":projects
+#     }
+#     return render(request, 'portfolio/portfolio.html', context)
+
+# def category(request, option):
+#     options = ["Website Design", "Product Development", "Mobile app development", "mobile app and web maintanance"]
+#     for opt in options:
+#         if opt == option:
+#             projects = Project.objects.filter(category=option).order_by("-date")
+#             context = {"projects":projects, "option":option}
+#             return render(request, "portfolio/categories.html", context)
+#         else:
+#             continue
+
+# def project_details(request, pk):
+#     project = Project.objects.get(pk=pk)
+#     context = {
+#         "project":project
+#     }
+#     return render(request, "portfolio/project_details.html", context)
+
 # def search(request):
 #     form = SearchForm(request.GET or None)
 #     results = []

@@ -6,6 +6,10 @@ class ProjectSerializer(serializers.ModelSerializer):
     class Meta:
         model = Project
         fields = ["id", "title", "description", "category", "image", "date"]
+
+
+
+
     # id = serializers.IntegerField(read_only=True)
     # title = serializers.CharField(max_length=100)
     # description = serializers.CharField(style={'base_template':'textarea.html'}, default="Such beautiful Projects!") 
