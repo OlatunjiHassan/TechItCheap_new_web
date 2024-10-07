@@ -1,11 +1,11 @@
 from django.urls import path
-from . import views
+from .views import ProjectListView, ProjectCategoryView, ProjectDetailView, ProjectSearchView
 
 app_name = "portfolio"
 
 urlpatterns = [
-    path("", views.portfolio_index, name="portfolio_index"),
-    path('search/', views.search, name='search'),
-    path('<int:pk>/', views.project_details, name='project_details'),
-    path('category/<str:option>', views.category, name='category')
+    path("", ProjectListView.as_view(), name="portfolio_index"),
+    path('<int:pk>/', ProjectDetailView.as_view(), name='project_details'),
+    path('category/<str:option>', ProjectCategoryView.as_view(), name='category'),
+    path('search/', ProjectSearchView.as_view(), name='search'),
 ]
